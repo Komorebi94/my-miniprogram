@@ -1,19 +1,5 @@
 import { resolve } from 'path';
 
-const CIPluginOpt = {
-    // 微信小程序
-    weapp: {
-        appid: "wxd3b82f00c28826dc",
-        projectPath: process.cwd() + '/dist',
-        privateKeyPath: process.cwd() + '/config/private.wxd3b82f00c28826dc.key',
-        ignores: ['node_modules/**/*'],
-    },
-    // 版本号
-    version: "1.0.0",
-    // 版本发布描述
-    desc: "版本描述"
-}
-
 const config = {
     projectName: 'my-miniporgram-demo',
     date: '2021-12-30',
@@ -31,7 +17,6 @@ const config = {
     outputRoot: 'dist',
     plugins: [
         ['taro-plugin-compiler-optimization'],
-        ["@tarojs/plugin-mini-ci", CIPluginOpt]
     ],
     defineConstants: {
     },
@@ -63,7 +48,12 @@ const config = {
                     generateScopedName: '[name]__[local]___[hash:base64:5]'
                 }
             }
-        }
+        },
+        webpackChain (chain) {
+            chain
+                .plugin('analyzer')
+                .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
+        },
     },
     h5: {
         publicPath: '/',

@@ -9,9 +9,7 @@
 		"css": "sass"
 	},
 	"scripts": {
-		"build:weapp": "taro build --type weapp --open",
-		"build:weapp:upload": "taro build --type weapp --upload",
-		"build:weapp:preview": "taro build --type weapp --preview",
+		"build:weapp": "taro build --type weapp",
 		"build:swan": "taro build --type swan",
 		"build:alipay": "taro build --type alipay",
 		"build:tt": "taro build --type tt",
@@ -82,7 +80,7 @@
 			"prettier --write",
 			"eslint"
 		],
-		"**/*.vue": [
+		"**/*.tsx": [
 			"prettier --write",
 			"eslint"
 		]
